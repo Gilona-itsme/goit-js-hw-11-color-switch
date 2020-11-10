@@ -19,20 +19,17 @@ const refs = {
   buttonStop: document.querySelector('button[data-action="stop"]'),
 };
 
-refs.buttonStart.addEventListener('click', onStartClick);
-refs.buttonStop.addEventListener('click', onStopClick);
-
 
 // Функция нажатия кнопки Start, раз в секунду меняет цвет фона body на случайное значение из массива используя инлайн-стиль, делает кнопку Start не активной.
 let intervalId;
 
-function onStartClick() {
+export function onStartClick() {
   intervalId = setInterval(setRendomColor, 1000, colors);
   refs.buttonStart.disabled = true;
 }
 
 // Функция нажатия на кнопку Stop, изменение цвета фона  останавливается, кнопка Старт становится активной
-function onStopClick() {
+export function onStopClick() {
   refs.buttonStart.disabled = false;
   clearInterval(intervalId);
   }
@@ -43,9 +40,10 @@ const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-function setRendomColor(colors) {
+
+export function setRendomColor(colors) {
   let colorCurrent = colors[randomIntegerFromInterval(0, colors.length - 1)];
   refs.body.style.backgroundColor = colorCurrent;
- console.log(colorCurrent);
+  console.log(colorCurrent);
 }
 
